@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-var n = 10000       // from 1 to 100000
-var st = []int64{}  // from -1000000000 to 1000000000
-var m = 12000       // from 1 to 2n-2
-var lr = []string{} // R or L only
+var n = 100000     // from 1 to 100000
+var st = []int64{} // from -1000000000 to 1000000000
+var m = 150000     // from 1 to 2n-2
+var lr string      // R or L only, delimer = space
 
-var size int64
+var size int64 = 2000000000
 var r, l int
 
 func randomer() {
@@ -19,16 +19,20 @@ func randomer() {
 	for i := 0; i < n; i++ {
 		st = append(st, rand.Int63n(size)-1000000000)
 	}
-	for i := 0; i < m; i++ {
+	i := 0
+	lr = "R"
+	for i < m {
 		if rand.Intn(2) == 1 {
 			if r < n {
-				lr = append(lr, "R")
+				lr += " R"
 				r++
+				i++
 			}
 		} else {
 			if l < r {
-				lr = append(lr, "L")
+				lr += " L"
 				l++
+				i++
 			}
 		}
 	}
@@ -39,8 +43,7 @@ func randomer() {
 //		return rand.Intn(2) == 1
 //	}
 func main() {
-	size = 2000000000 // -1000000000-+1000000000
-	randomer()        //v2
+	randomer() //v2
 	// 1 line: number of elements
 	fmt.Println(n)
 	// 2 line: list of values
