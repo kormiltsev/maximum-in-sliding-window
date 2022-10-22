@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strconv"
 	"time"
 )
 
@@ -15,7 +14,6 @@ var l, r int         // heads positions
 var buf = []int64{}  // subsequense
 var max int64        // local maximum
 var answer string    // string to print
-var ans = []int64{}  // answers
 
 func reader() {
 	fmt.Scan(&n)
@@ -78,12 +76,7 @@ func main() {
 				buf = buf[1:]
 			}
 		}
-		ans = append(ans, max)
-		answer += fmt.Sprintf("%d", max)
-	}
-	answer = strconv.FormatInt(ans[0], 10)
-	for j := 1; j < len(ans); j++ {
-		answer += " " + strconv.FormatInt(ans[j], 10)
+		answer += fmt.Sprintf(" %d", max)
 	}
 	duration2 := time.Since(start) // count working time
 	//fmt.Println(answer)
